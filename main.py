@@ -23,8 +23,8 @@ train_letter = data_train.values[:, 1:]
 #     image = num.fliplr(image)
 #     image = num.rot90(image)
 #     return image
-
-
+#
+#
 # train_letter = num.asarray(train_letter)
 # train_letter = num.apply_along_axis(rotate, 1, train_letter)
 #
@@ -37,7 +37,7 @@ train_letter = data_train.values[:, 1:]
 # build our model
 
 # model = tf.keras.models.Sequential()  # build nn
-
+#
 # model.add(tf.keras.layers.Flatten())  #
 
 # model.add(tf.keras.layers.Dense(units=1024, activation=tf.nn.relu))
@@ -61,19 +61,19 @@ train_letter = data_train.values[:, 1:]
 #
 model1 = tf.keras.models.load_model('digits.model')
 
-letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-          'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-          'w', 'x', 'y', 'z']
+letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+          'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+          'W', 'X', 'Y', 'Z']
 
 
-
+#
 def prepare(path):
-    image = cv.imread(path, cv.IMREAD_GRAYSCALE)
+    image = cv.imread(path, cv.IMREAD_GRAYSCALE)  # convert image to the single channel grayscale image
     image2 = cv.resize(image, (28, 28))
     image2 = num.invert(num.array([image2]))
     return image2.reshape(-1, 28, 28, 1)
 
 
 # image path
-pre = model1.predict([prepare("C:\\Users\\FFaye\\OneDrive\\nDesktop\\mid\\AI\\1.png")])
+pre = model1.predict([prepare("C:\\Users\\FFaye\\OneDrive\\Desktop\\mid\\AI\\5.jpg")])
 print(letter[num.argmax(pre) - 1])
